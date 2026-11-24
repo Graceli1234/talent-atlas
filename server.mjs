@@ -60,6 +60,7 @@ const assets = {
   '/style.css': ['style.css', 'text/css'],
   '/home.css': ['home.css', 'text/css'],
   '/painted-sky.jpg': ['painted-sky.jpg', 'image/jpeg'],
+  '/painted-foliage.png': ['painted-foliage.png', 'image/png'],
   '/app.js': ['app.js', 'text/javascript'],
   '/guide.mjs': ['guide.mjs', 'text/javascript'],
   '/config.mjs': ['config.mjs', 'text/javascript']

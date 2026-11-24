@@ -2,39 +2,6 @@
   display: none;
 }
 
-body:has(#welcome:not([hidden])) {
-  --ink: #292d21;
-  --paper: #f5f1e8;
-  --green: #464f34;
-  --muted: #555a4a;
-  --line: #d6d5c4;
-  color: var(--ink);
-  background: var(--paper);
-}
-
-body:has(#welcome:not([hidden])) .top {
-  max-width: 960px;
-  height: 62px;
-  margin-top: 18px;
-  padding-inline: 17px 10px;
-  border: 1px solid #e1ddd1;
-  border-radius: 14px;
-  background: #faf8f0;
-  box-shadow: 0 4px 20px #493c260a;
-}
-
-body:has(#welcome:not([hidden])) .brand {
-  font-family: "Songti SC", "Noto Serif CJK SC", "Noto Serif SC", "SimSun", serif;
-  font-size: 1.13rem;
-}
-
-body:has(#welcome:not([hidden])) .mark {
-  color: #464f34;
-  background: #e9eadc;
-  border: 1px solid #d9decb;
-  border-radius: 50%;
-}
-
 body:has(#welcome:not([hidden])) .home-nav {
   display: inline-flex;
   align-items: center;
@@ -51,29 +18,55 @@ body:has(#welcome:not([hidden])) .home-nav:hover {
 }
 
 .hero {
-  position: relative;
-  isolation: isolate;
   display: grid;
-  place-items: center;
-  min-height: clamp(460px, 60vh, 620px);
-  margin: 18px auto 0;
-  padding: 55px 20px 65px;
-  overflow: hidden;
-  border: 1px solid #e0dbcd;
-  border-radius: 24px;
+  justify-items: center;
+  align-items: start;
+  min-height: max(460px, calc(100svh - var(--header-offset)));
+  padding: clamp(58px, 10svh, 112px) 20px 64px;
   text-align: center;
-  background: #e9ebea;
 }
 
-.hero-atmosphere {
+.journal-landscape {
   position: absolute;
   z-index: -1;
-  inset: 0;
+  inset: 0 0 auto;
+  height: max(540px, 100svh);
   overflow: hidden;
   pointer-events: none;
   background:
-    radial-gradient(ellipse at 50% 46%, #f9f5eabf 4%, #f9f5ea70 40%, transparent 74%),
-    url("./painted-sky.jpg") center 63% / cover no-repeat;
+    linear-gradient(to bottom, var(--paper) 5%, #f5f1e8e8 23%, #f5f1e87a 61%, transparent 80%, var(--paper) 100%),
+    url("./painted-sky.jpg") center 64% / cover no-repeat;
+}
+
+.journal-landscape::before,
+.journal-landscape::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  width: min(42vw, 64svh);
+  height: 74%;
+  background: url("./painted-foliage.png") left bottom / contain no-repeat;
+}
+
+.journal-landscape::before {
+  left: -3vw;
+}
+
+.journal-landscape::after {
+  right: -4vw;
+  width: min(39vw, 56svh);
+  height: 65%;
+  transform: scaleX(-1);
+}
+
+body:has(#welcome[hidden]) .journal-landscape {
+  opacity: .54;
+}
+
+body:has(#welcome[hidden]) .journal-landscape::before,
+body:has(#welcome[hidden]) .journal-landscape::after {
+  opacity: .72;
 }
 
 .cloud {
@@ -136,7 +129,7 @@ body:has(#welcome:not([hidden])) .home-nav:hover {
 .hero h1 {
   margin: 0 0 22px;
   color: #24291e;
-  font-family: "Songti SC", "Noto Serif CJK SC", "Noto Serif SC", "SimSun", serif;
+  font-family: var(--serif);
   font-size: clamp(2rem, 6vw, 4.7rem);
   font-weight: 650;
   letter-spacing: -.06em;
@@ -182,15 +175,16 @@ body:has(#welcome:not([hidden])) .home-nav:hover {
 }
 
 .method {
-  max-width: 960px;
+  width: min(100%, 960px);
   margin: 36px auto 0;
-  padding: 0 0 16px;
+  padding-inline: var(--gutter);
+  padding-bottom: 16px;
   scroll-margin-top: 24px;
 }
 
 .method h2 {
   margin: 0 0 14px;
-  font-family: "Songti SC", "Noto Serif CJK SC", "Noto Serif SC", "SimSun", serif;
+  font-family: var(--serif);
   font-size: 1.38rem;
   font-weight: 650;
 }
@@ -226,19 +220,24 @@ body:has(#welcome:not([hidden])) .home-nav:hover {
   max-width: 72ch;
 }
 
-body:has(#welcome:not([hidden])) .settings {
-  max-width: 960px;
-}
-
 @media (max-width: 640px) {
   .hero {
-    min-height: 410px;
-    padding: 44px 14px 50px;
-    border-radius: 17px;
+    min-height: max(465px, calc(100svh - var(--header-offset)));
+    padding: clamp(52px, 10svh, 82px) 16px 60px;
   }
 
-  .hero-atmosphere {
-    background-position: center, center 64%;
+  .journal-landscape {
+    background-position: center, center bottom;
+  }
+
+  .journal-landscape::before {
+    left: -12vw;
+    width: 57vw;
+  }
+
+  .journal-landscape::after {
+    right: -12vw;
+    width: 51vw;
   }
 
   .hero h1 {
