@@ -58,6 +58,8 @@ export function makeApi({ key, model, fetchModel = fetch }) {
 const assets = {
   '/': ['index.html', 'text/html'],
   '/style.css': ['style.css', 'text/css'],
+  '/home.css': ['home.css', 'text/css'],
+  '/water.mjs': ['water.mjs', 'text/javascript'],
   '/app.js': ['app.js', 'text/javascript'],
   '/guide.mjs': ['guide.mjs', 'text/javascript'],
   '/config.mjs': ['config.mjs', 'text/javascript']
