@@ -59,7 +59,7 @@ const assets = {
   '/': ['index.html', 'text/html'],
   '/style.css': ['style.css', 'text/css'],
   '/home.css': ['home.css', 'text/css'],
-  '/water.mjs': ['water.mjs', 'text/javascript'],
+  '/painted-sky.jpg': ['painted-sky.jpg', 'image/jpeg'],
   '/app.js': ['app.js', 'text/javascript'],
   '/guide.mjs': ['guide.mjs', 'text/javascript'],
   '/config.mjs': ['config.mjs', 'text/javascript']
@@ -80,7 +80,7 @@ export function makeServer({ origin, key, model = 'gpt-4.1-mini', fetchModel } =
       const [file, type] = assets[pathname];
       try {
         const content = await readFile(new URL('./docs/' + file, import.meta.url));
-        res.writeHead(200, { 'Content-Type': type + '; charset=utf-8', 'X-Content-Type-Options': 'nosniff' });
+        res.writeHead(200, { 'Content-Type': type.startsWith('text/') ? type + '; charset=utf-8' : type, 'X-Content-Type-Options': 'nosniff' });
         res.end(content);
       } catch { send(500, { error: '无法读取页面' }); }
       return;

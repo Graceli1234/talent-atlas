@@ -3,23 +3,35 @@
 }
 
 body:has(#welcome:not([hidden])) {
-  --ink: #f5f7ff;
-  --paper: #090c15;
-  --green: #bfcdff;
-  --muted: #abb5cf;
-  --line: #283248;
+  --ink: #292d21;
+  --paper: #f5f1e8;
+  --green: #464f34;
+  --muted: #555a4a;
+  --line: #d6d5c4;
   color: var(--ink);
   background: var(--paper);
 }
 
 body:has(#welcome:not([hidden])) .top {
-  border-color: #25304a;
+  max-width: 960px;
+  height: 62px;
+  margin-top: 18px;
+  padding-inline: 17px 10px;
+  border: 1px solid #e1ddd1;
+  border-radius: 14px;
+  background: #faf8f0;
+  box-shadow: 0 4px 20px #493c260a;
+}
+
+body:has(#welcome:not([hidden])) .brand {
+  font-family: "Songti SC", "Noto Serif CJK SC", "Noto Serif SC", "SimSun", serif;
+  font-size: 1.13rem;
 }
 
 body:has(#welcome:not([hidden])) .mark {
-  color: #ebf0ff;
-  background: #202c59;
-  border: 1px solid #3b528e;
+  color: #464f34;
+  background: #e9eadc;
+  border: 1px solid #d9decb;
   border-radius: 50%;
 }
 
@@ -28,13 +40,14 @@ body:has(#welcome:not([hidden])) .home-nav {
   align-items: center;
   min-height: 44px;
   padding-inline: 12px;
-  color: #dde4fa;
+  border-radius: 8px;
+  color: var(--green);
   font-size: .9375rem;
   text-decoration: none;
 }
 
-.home-nav:hover {
-  text-decoration: underline !important;
+body:has(#welcome:not([hidden])) .home-nav:hover {
+  background: #eeeee2;
 }
 
 .hero {
@@ -42,129 +55,126 @@ body:has(#welcome:not([hidden])) .home-nav {
   isolation: isolate;
   display: grid;
   place-items: center;
+  min-height: clamp(460px, 60vh, 620px);
+  margin: 18px auto 0;
+  padding: 55px 20px 65px;
   overflow: hidden;
-  width: calc(100% + 2 * min(32px, 4vw));
-  margin-inline: calc(-1 * min(32px, 4vw));
-  min-height: clamp(520px, 65vh, 680px);
-  padding: 72px 20px 86px;
+  border: 1px solid #e0dbcd;
+  border-radius: 24px;
   text-align: center;
+  background: #e9ebea;
 }
 
 .hero-atmosphere {
   position: absolute;
   z-index: -1;
   inset: 0;
-  pointer-events: none;
   overflow: hidden;
-  background:
-    radial-gradient(ellipse at 53% 105%, #263ca6 0%, #192765 21%, transparent 59%),
-    radial-gradient(ellipse at 9% 65%, #132350 0%, transparent 42%);
-  mask-image: linear-gradient(to bottom, transparent, #000 23%, #000 80%, transparent),
-    linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
-  mask-composite: intersect;
-}
-
-.hero-atmosphere::before,
-.hero-atmosphere::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  width: max(110%, 680px);
-  height: 82%;
-  border-radius: 50%;
-  transform: translateX(-50%) rotate(-10deg);
-}
-
-.hero-atmosphere::before {
-  top: 68%;
-  border-top: 1px solid #7893f3;
-  box-shadow: 0 -12px 35px #3657ce8c, inset 0 17px 39px #3657ce73;
-}
-
-.hero-atmosphere::after {
-  top: 74%;
-  border-top: 1px solid #738fe86b;
-  box-shadow: 0 -4px 22px #2b4da383;
-}
-
-#hero-water {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
   pointer-events: none;
-  mask-image: radial-gradient(ellipse 72% 78% at 50% 52%, #000 60%, transparent 100%);
+  background:
+    radial-gradient(ellipse at 50% 46%, #f9f5eabf 4%, #f9f5ea70 40%, transparent 74%),
+    url("./painted-sky.jpg") center 63% / cover no-repeat;
+}
+
+.cloud {
+  position: absolute;
+  width: clamp(190px, 34vw, 470px);
+  height: clamp(74px, 10vw, 140px);
+  background:
+    radial-gradient(ellipse at 20% 56%, #fff9e9bf, transparent 48%),
+    radial-gradient(ellipse at 44% 35%, #fffbf1ba, transparent 59%),
+    radial-gradient(ellipse at 70% 62%, #fff7e5c0, transparent 56%);
+  filter: blur(7px);
+  opacity: .8;
+  animation: cloud-drift 23s ease-in-out infinite alternate;
+}
+
+.cloud-west {
+  top: 13%;
+  left: -6%;
+}
+
+.cloud-east {
+  right: -7%;
+  bottom: 15%;
+  width: clamp(175px, 29vw, 415px);
+  animation-duration: 27s;
+  animation-delay: -9s;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes cloud-drift {
+  from { transform: translate3d(-12%, 0, 0); }
+  to { transform: translate3d(22%, -12px, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cloud { animation: none; }
 }
 
 .hero-copy {
-  width: min(100%, 690px);
+  width: min(100%, 720px);
 }
 
 .hero .eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 19px;
-  color: #b9c8ff;
+  gap: 9px;
+  margin-bottom: 20px;
+  color: #48543b;
   font-size: .875rem;
-  font-weight: 620;
+  font-weight: 650;
 }
 
 .hero .eyebrow span {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: #99afff;
-  box-shadow: 0 0 12px #7195ff;
+  background: #68754f;
 }
 
 .hero h1 {
-  margin: 0 0 24px;
-  color: #f6f7ff;
-  font-size: clamp(2rem, 6.2vw, 5rem);
-  font-weight: 760;
-  letter-spacing: -.072em;
-  line-height: 1.14;
+  margin: 0 0 22px;
+  color: #24291e;
+  font-family: "Songti SC", "Noto Serif CJK SC", "Noto Serif SC", "SimSun", serif;
+  font-size: clamp(2rem, 6vw, 4.7rem);
+  font-weight: 650;
+  letter-spacing: -.06em;
+  line-height: 1.2;
   white-space: nowrap;
 }
 
 .hero h1 span {
-  color: #aabdff;
+  color: #48543b;
 }
 
 .hero .hello {
-  width: min(100%, 34em);
-  margin: 0 auto 28px;
-  color: #c4cde6;
+  width: min(100%, 38em);
+  margin: 0 auto 27px;
+  color: #45493b;
   font-size: clamp(1rem, 1.7vw, 1.125rem);
   line-height: 1.85;
   text-wrap: pretty;
 }
 
 .hero .primary {
-  min-width: 152px;
-  min-height: 51px;
-  padding-inline: 25px;
-  border: 1px solid #8c9eff;
-  border-radius: 13px;
-  color: #fff;
-  background: #435bcc;
-  box-shadow: 0 0 27px #4462e858, inset 0 1px #ffffff33;
+  min-width: 148px;
+  min-height: 50px;
+  padding-inline: 24px;
+  border: 1px solid #4c573b;
+  border-radius: 9px;
+  color: #fffef8;
+  background: #4c573b;
+  box-shadow: 0 3px 10px #3f48252e;
 }
 
 .hero .primary:hover {
-  background: #526cde;
-}
-
-.hero .primary:focus-visible,
-.home-nav:focus-visible {
-  outline-color: #c4d1ff;
+  background: #3b482c;
 }
 
 .hero .meta {
-  margin-top: 14px;
-  color: #bbc7e9;
+  margin-top: 13px;
+  color: #494e40;
 }
 
 .hero .meta span {
@@ -172,16 +182,16 @@ body:has(#welcome:not([hidden])) .home-nav {
 }
 
 .method {
-  position: relative;
   max-width: 960px;
-  margin: 0 auto;
-  padding: 0 0 26px;
-  scroll-margin-top: 28px;
+  margin: 36px auto 0;
+  padding: 0 0 16px;
+  scroll-margin-top: 24px;
 }
 
 .method h2 {
-  margin: 0 0 15px;
-  font-size: 1.25rem;
+  margin: 0 0 14px;
+  font-family: "Songti SC", "Noto Serif CJK SC", "Noto Serif SC", "SimSun", serif;
+  font-size: 1.38rem;
   font-weight: 650;
 }
 
@@ -189,61 +199,64 @@ body:has(#welcome:not([hidden])) .home-nav {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
-  margin: 0 0 24px;
+  margin: 0 0 23px;
 }
 
 .theme-grid div {
   padding: 17px 16px;
-  border: 1px solid #303b58;
-  border-radius: 13px;
-  background: linear-gradient(145deg, #17223b, #101627);
+  border: 1px solid #dedccd;
+  border-radius: 12px;
+  background: #faf8ef;
 }
 
 .theme-grid dt {
   margin-bottom: 6px;
+  color: #3d4a33;
   font-size: 1rem;
   font-weight: 650;
 }
 
 .theme-grid dd {
   margin: 0;
-  color: #b4bfdb;
+  color: #555a4a;
   font-size: .9375rem;
 }
 
 .method-notes {
   max-width: 72ch;
-  color: #c2cbe2;
 }
 
 body:has(#welcome:not([hidden])) .settings {
   max-width: 960px;
 }
 
-body:has(#welcome:not([hidden])) .settings input {
-  color: #f5f7ff;
-  background: #10182b;
-  border-color: #596889;
-}
-
-body:has(#welcome:not([hidden])) .quiet:hover {
-  background: #18264a;
-}
-
 @media (max-width: 640px) {
   .hero {
-    padding: 61px 9px 69px;
-    min-height: 0;
+    min-height: 410px;
+    padding: 44px 14px 50px;
+    border-radius: 17px;
+  }
+
+  .hero-atmosphere {
+    background-position: center, center 64%;
   }
 
   .hero h1 {
-    margin-bottom: 21px;
-    font-size: clamp(1.5rem, 9.6vw, 3.8rem);
+    margin-bottom: 19px;
+    font-size: clamp(1.5rem, 9.6vw, 3.65rem);
   }
 
   .hero .hello {
-    max-width: 26em;
-    margin-bottom: 23px;
+    max-width: 27em;
+    margin-bottom: 22px;
+  }
+
+  .hero .meta span {
+    margin-inline: 1px;
+  }
+
+  .method {
+    margin-top: 27px;
   }
 
   .theme-grid {
