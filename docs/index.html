@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="从真实经历里，找出可以带到不同工作和生活场景里的底层能力。">
+<title>天赋挖掘机 · 生涯探索</title>
+<link rel="stylesheet" href="./style.css">
+<script type="module" src="./app.js"></script>
+</head>
+<body>
+<header class="shell top"><a class="brand" href="./"><span class="mark" aria-hidden="true">✳</span> 天赋挖掘机</a><button id="reset" class="quiet" hidden>清空记录</button></header>
+<main class="shell">
+<section id="welcome" class="hero">
+<div class="hero-copy">
+<p class="eyebrow">生涯探索手记</p>
+<h1>我适合<br>做什么<span>？</span></h1>
+<p class="hello">你好。也许你已经试过很多方向，也可能只是想知道，那些自己习以为常的事，能不能成为一条路。我们可以从一段真实的经历慢慢聊起。</p>
+<p>天赋永远不会过期。这里说的天赋，是你做事时反复用到、换一个场景也能带走的底层能力。</p>
+<button id="start" class="primary">开始探索</button>
+<p class="meta">约 15–30 分钟 · 每次一题 · 最多 10 题</p>
+</div>
+<figure class="field" aria-hidden="true">
+<div class="contours"></div><span class="point p1"></span><span class="point p2"></span><span class="point p3"></span>
+<span class="field-label one">投入</span><span class="field-label two">胜任</span><span class="field-label three">能量</span>
+</figure>
+</section>
+<section id="method" class="method">
+<p>我们会聊童年曾经着迷的事、成人后顺手的事、做完有劲的事，也会碰一碰羡慕与嫉妒。每答一题，你会收到一段简短回应，再进入下一题。最后把线索整理成《个人天赋使用说明书》，用于探索职业方向和设计小实验。</p>
+<p class="muted">回答默认保存在当前浏览器。涉及隐私的经历可以跳过。连接 AI 或主动将材料粘贴到 AI 对话时，相关内容才会交给相应服务处理。</p>
+</section>
+<section id="interview" class="desk" hidden>
+<div class="desk-heading"><p class="eyebrow" id="progress"></p><span id="mode" class="muted"></span></div>
+<div id="feedback" class="feedback" hidden></div>
+<h1 id="question" tabindex="-1"></h1>
+<p id="hint" class="muted"></p>
+<form id="answer-form">
+<label for="answer">你的回答</label>
+<textarea id="answer" rows="6" maxlength="2500" placeholder="可以从一个你记得的具体场景写起……"></textarea>
+<div class="actions"><button id="submit" class="primary" type="submit">提交回答</button><button id="skip" class="quiet" type="button">跳过这一题</button></div>
+</form>
+<p id="status" class="status" role="status"></p>
+<details id="past" hidden><summary>回看之前的回答</summary><div id="history"></div></details>
+</section>
+<section id="result" class="desk" hidden>
+<p class="eyebrow">访谈完成</p>
+<h1 tabindex="-1" id="result-heading">个人天赋使用说明书</h1>
+<div id="last-feedback" class="feedback"></div>
+<p id="result-intro">你可以先回看自己的回答。生成说明书时，AI 会把跨场景的能力线索、让你有能量的条件、职业方向和验证办法写进报告。</p>
+<div class="actions">
+<button id="generate" class="primary" hidden>在网页内生成说明书</button>
+<button id="copy" class="quiet">复制 AI 生成材料</button>
+<button id="save-transcript" class="quiet">下载访谈记录</button>
+</div>
+<p class="muted">复制后，可自行粘贴到 <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a> 等工具。粘贴前可删去个人信息。若输出中断，可请它接着写完。</p>
+<textarea id="manual-copy" aria-label="AI 生成材料" rows="8" readonly hidden></textarea>
+<p id="report-status" class="status" role="status"></p>
+<button id="save-report" class="quiet" hidden>下载说明书</button>
+<article id="report" hidden></article>
+<details id="result-past"><summary>回看完整访谈</summary><div id="result-history"></div></details>
+</section>
+<details id="settings" class="settings" hidden><summary>AI 连接设置</summary><p class="muted">可填写部署者提供的 AI 服务地址。启用后，提交访谈或生成报告会把回答发送到该服务和它使用的 AI 提供商。清空地址可恢复本地模式。</p><form id="connection"><label for="endpoint">AI 服务地址</label><input type="url" id="endpoint" placeholder="https://…"><button class="quiet">保存连接</button></form><p id="connection-status" role="status"></p></details>
+</main>
+<footer class="shell footer">给自己的生涯探索手记 · 访谈所得是可以验证和修正的线索</footer>
+</body>
+</html>
